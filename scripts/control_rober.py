@@ -3,12 +3,14 @@ import time
 import rospy
 from rospy.exceptions import ROSInterruptException
 from geometry_msgs.msg import Twist
+from sensor_msgs.msg import Range
 
 class Contorller:
     def __init__(self):
         rospy.init_node('controller', anonymous=True)
         self.is_forward = True
         self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+        self.sub = rospy.Subscriber('scan', Range, self.callback)
         rospy.Timer(rospy.Duration(1.0), self.timer_callback)
 
         # Twistの初期化
@@ -16,6 +18,11 @@ class Contorller:
         twiet.linear.x = 0
         twiet.angular.z = 0
         self.pub.publish(twiet)
+
+    def callback(self, data):
+        # センサーの値を受け取る
+        distance = data.range
+        rospy.loginfo("distance: %f", distance)
 
     def timer_callback(self, event):
         # Twistの初期化

@@ -3,7 +3,6 @@ import time
 import rospy
 from rospy.exceptions import ROSInterruptException
 from geometry_msgs.msg import Twist
-from sensor_msgs.msg import Range
 from MotorDriver.PCA9685 import PCA9685
 
 Dir = [
@@ -56,13 +55,12 @@ class Rober:
         self.speed = 0
         self.motor.MotorRun(0, Dir[0], self.speed)
         self.motor.MotorRun(1, Dir[0], self.speed)
-        self.pub = rospy.Publisher('scan', Range, queue_size=10)
         self.sub = rospy.Subscriber('cmd_vel', Twist, self.callback, queue_size=10)
 
     def callback(self, data):
         self.speed = data.linear.x * 100
         self.angle = data.angular.z * 100
-        rospy.loginfo('set linear.x = {}, linear.z = {}'.format(self.speed, self.angle))
+        rospy.loginfo('set linear.x = {}, angular.z = {}'.format(self.speed, self.angle))
  
         if self.speed > 0:
             self.motor.MotorRun(0, Dir[0], self.speed)
@@ -82,7 +80,7 @@ class Rober:
             self.motor.MotorRun(0, Dir[0], -self.angle)
     
     def shutdown(self):
-        rospy.loginfo("Stop")
+        rospy.loginfo("Shutdown")
         self.motor.MotorStop(0)
         self.motor.MotorStop(1)
         rospy.sleep(1)
@@ -90,7 +88,7 @@ class Rober:
 if __name__ == '__main__':
     try:
         rober = Rober()
-        rospy.loginfo('start')
+        rospy.loginfo('Startup')
         rospy.spin()
     except ROSInterruptException:
         pass
