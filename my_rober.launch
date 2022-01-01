@@ -1,0 +1,4 @@
+<launch>
+	<node name="rober" pkg="my_rober" type="rober.py" output="screen" />
+</launch>
+

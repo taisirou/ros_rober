@@ -51,6 +51,7 @@ class MotorDriver():
 class Rober:
     def __init__(self):
         rospy.init_node('rober', anonymous=True)
+        rospy.on_shutdown(self.shutdown)
         self.motor = MotorDriver()
         self.speed = 0
         self.motor.MotorRun(0, Dir[0], self.speed)
@@ -60,7 +61,9 @@ class Rober:
 
     def callback(self, data):
         self.speed = data.linear.x * 100
-        rospy.loginfo('set linear.x = {}'.format(self.speed))
+        self.angle = data.angular.z * 100
+        rospy.loginfo('set linear.x = {}, linear.z = {}'.format(self.speed, self.angle))
+ 
         if self.speed > 0:
             self.motor.MotorRun(0, Dir[0], self.speed)
             self.motor.MotorRun(1, Dir[0], self.speed)
@@ -70,6 +73,19 @@ class Rober:
         else:
             self.motor.MotorRun(0, Dir[1], -self.speed)
             self.motor.MotorRun(1, Dir[1], -self.speed)
+        
+        if self.angle > 0:
+            self.motor.MotorRun(1, Dir[0], self.angle)
+            self.motor.MotorRun(0, Dir[1], self.angle)
+        elif self.angle < 0:
+            self.motor.MotorRun(1, Dir[1], -self.angle)
+            self.motor.MotorRun(0, Dir[0], -self.angle)
+    
+    def shutdown(self):
+        rospy.loginfo("Stop")
+        self.motor.MotorStop(0)
+        self.motor.MotorStop(1)
+        rospy.sleep(1)
 
 if __name__ == '__main__':
     try:
