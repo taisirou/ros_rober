@@ -1,4 +1,4 @@
 <launch>
 	<node name="rober" pkg="my_rober" type="rober.py" output="screen" />
+	<node name="sonar_sensor" pkg="my_rober" type="sonar_sensor.py" />
 </launch>
-
