@@ -9,10 +9,11 @@ from sensor_msgs.msg import Range
 class Contorller:
     def __init__(self):
         rospy.init_node('controller', anonymous=True)
-        rospy.on_shutdown(self.shutdown_callback)
         self.distance = 100
         self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         self.sub = rospy.Subscriber('scan', Range, self.scan_callback)
+        # プログラムを終了したときに実行するコールバック関数
+        rospy.on_shutdown(self.shutdown_callback)
         rospy.Timer(rospy.Duration(1.0), self.timer_callback)
 
         # Twistの初期化
@@ -29,7 +30,8 @@ class Contorller:
     def timer_callback(self, event):
         # Twistの初期化
         twiet = Twist()
-        if self.distance < 15:
+        # センサーの距離に応じて、旋回する
+        if self.distance < 30:
             twiet.linear.x = 0
             twiet.angular.z = 0.5
         else:
