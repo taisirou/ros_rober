@@ -6,7 +6,7 @@ ROS対応の自作ロボットカー
 
 ```
 cd ~/catkin_ws/src
-git clone https://github.com/Miura55/ros_rober
+git clone https://github.com/Miura55/ros_rober my_rober
 cd ~/catkin_ws
 catkin_make
 ```
