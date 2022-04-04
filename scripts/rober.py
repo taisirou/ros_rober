@@ -52,38 +52,36 @@ class Rober:
         rospy.init_node('rober', anonymous=True)
         rospy.on_shutdown(self.shutdown)
         self.motor = MotorDriver()
-        self.speed = 0
-        self.motor.MotorRun(0, Dir[0], self.speed)
-        self.motor.MotorRun(1, Dir[0], self.speed)
+        self.motor.MotorRun(0, Dir[0], 0)
+        self.motor.MotorRun(1, Dir[0], 0)
         self.sub = rospy.Subscriber('cmd_vel', Twist, self.callback, queue_size=10)
 
     def callback(self, data):
-        self.speed = data.linear.x * 100
-        self.angle = data.angular.z * 100
-        rospy.loginfo('set linear.x = {}, angular.z = {}'.format(self.speed, self.angle))
+        linear = data.linear.x * 100
+        angle = data.angular.z * 100
+        rospy.loginfo('set linear.x = {}, angular.z = {}'.format(linear, angle))
  
-        if self.speed > 0:
-            self.motor.MotorRun(0, Dir[0], self.speed)
-            self.motor.MotorRun(1, Dir[0], self.speed)
-        elif self.speed == 0:
-            self.motor.MotorStop(0)
-            self.motor.MotorStop(1)
-        else:
-            self.motor.MotorRun(0, Dir[1], -self.speed)
-            self.motor.MotorRun(1, Dir[1], -self.speed)
+        right_speed = linear + angle
+        left_speed = linear - angle
         
-        if self.angle > 0:
-            self.motor.MotorRun(1, Dir[0], self.angle)
-            self.motor.MotorRun(0, Dir[1], self.angle)
-        elif self.angle < 0:
-            self.motor.MotorRun(1, Dir[1], -self.angle)
-            self.motor.MotorRun(0, Dir[0], -self.angle)
-    
+        # 左右のモーターの速度を設定
+        self.set_vector(0, right_speed)
+        self.set_vector(1, left_speed)
+
+    def set_vector(self, index, speed):
+        if speed > 0:
+            self.motor.MotorRun(index, Dir[0], speed)
+        elif speed == 0:
+            self.motor.MotorStop(0)
+        else:
+            self.motor.MotorRun(index, Dir[1], -speed)
+
     def shutdown(self):
         rospy.loginfo("Shutdown")
         self.motor.MotorStop(0)
         self.motor.MotorStop(1)
         rospy.sleep(1)
+
 
 if __name__ == '__main__':
     try:
