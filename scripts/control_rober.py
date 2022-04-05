@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import time
 import rospy
 from rospy.exceptions import ROSInterruptException
 from geometry_msgs.msg import Twist

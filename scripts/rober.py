@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import time
 import rospy
 from rospy.exceptions import ROSInterruptException
 from geometry_msgs.msg import Twist
@@ -64,7 +63,7 @@ class Rober:
         right_speed = linear + angle
         left_speed = linear - angle
         
-        # 左右のモーターの速度を設定
+        # Set vector of both motor 
         self.set_vector(0, right_speed)
         self.set_vector(1, left_speed)
 
