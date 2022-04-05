@@ -1,0 +1,8 @@
+<launch>
+	<node name="joystick" pkg="joy" type="joy_node" />
+	<node name="control_rober" 
+		pkg="my_rober" 
+		type="control_rober_joystick.py" 
+		output="screen"
+	/>
+</launch>
