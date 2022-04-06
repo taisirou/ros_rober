@@ -71,7 +71,7 @@ class Rober:
         if speed > 0:
             self.motor.MotorRun(index, Dir[0], speed)
         elif speed == 0:
-            self.motor.MotorStop(0)
+            self.motor.MotorStop(index)
         else:
             self.motor.MotorRun(index, Dir[1], -speed)
 
