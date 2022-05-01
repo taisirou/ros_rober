@@ -10,7 +10,7 @@ class Contorller:
         rospy.init_node('controller', anonymous=True)
         self.distance = 100
         self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-        self.sub = rospy.Subscriber('scan', Range, self.scan_callback)
+        self.sub = rospy.Subscriber('sonar', Range, self.scan_callback)
         # プログラムを終了したときに実行するコールバック関数
         rospy.on_shutdown(self.shutdown_callback)
         rospy.Timer(rospy.Duration(1.0), self.timer_callback)

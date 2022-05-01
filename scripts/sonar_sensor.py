@@ -18,7 +18,7 @@ class SonarSensor:
     def __init__(self):
         rospy.init_node('rober', anonymous=True)
         rospy.on_shutdown(self.shutdown)
-        self.pub = rospy.Publisher('scan', Range, queue_size=10)
+        self.pub = rospy.Publisher('sonar', Range, queue_size=10)
         rospy.Timer(rospy.Duration(1.0), self.timer_callback)
 
     # HIGH or LOWの時計測
