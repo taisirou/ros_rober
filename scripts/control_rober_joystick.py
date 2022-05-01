@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/python3
 import rospy
 from rospy.exceptions import ROSInterruptException
 from sensor_msgs.msg import Joy
