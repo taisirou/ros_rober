@@ -1,0 +1,13 @@
+<launch>
+  <!-- gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="mapper">
+    <param name="maxUrange" value="8.0" type="double" />
+    <param name="delta" value="0.03" />
+    <param name="xmax" value="30" type="double" />
+    <param name="ymax" value="30" type="double" />
+    <param name="xmin" value="-30" type="double" />
+    <param name="ymin" value="-30" type="double" />
+  </node>
+
+  <node pkg="rviz" type="rviz" args="-d '$(find my_rober)/rviz/gmapping.rviz'" name="visualizer" respawn="true" />
+</launch>
