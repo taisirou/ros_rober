@@ -1,4 +1,5 @@
 <launch>
+  <!-- X2L -->
   <node name="ydlidar_node"  pkg="ydlidar_ros"  type="ydlidar_node" output="screen" respawn="false" >
     <param name="port"         type="string" value="/dev/ydlidar"/>
     <param name="baudrate"         type="int" value="115200"/>
@@ -16,6 +17,17 @@
     <param name="isSingleChannel"    type="bool"   value="true"/>
   </node>
 
+  <!-- gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="mapper">
+    <param name="maxUrange" value="8.0" type="double" />
+    <param name="delta" value="0.03" />
+    <param name="xmax" value="30" type="double" />
+    <param name="ymax" value="30" type="double" />
+    <param name="xmin" value="-30" type="double" />
+    <param name="ymin" value="-30" type="double" />
+  </node>
+
+  <!-- tf -->
   <node pkg ="tf" type="static_transform_publisher" name="map_to_odom" args="0.0 0.0 0.0 0.0 0.0 0.0 /map /nav 40"/>
   <node pkg ="tf" type="static_transform_publisher" name="odom_to_base_link" args="0.0 0.0 0.0 0.0 0.0 0.0 /nav /base_footprint 40"/>
   <node pkg ="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.2245 0.0 0.2 0.0 0.0 0.0 /base_footprint /base_link 40" />
