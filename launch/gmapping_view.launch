@@ -1,3 +1,0 @@
-<launch>
-  <node pkg="rviz" type="rviz" args="-d '$(find my_rober)/rviz/gmapping.rviz'" name="visualizer" respawn="true" />
-</launch>
