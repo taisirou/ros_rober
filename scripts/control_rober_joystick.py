@@ -24,8 +24,8 @@ class Contorller:
 
     def timer_callback(self, event):
         twist = Twist()
-        twist.linear.x = int(self.linear_x) * 0.5
-        twist.angular.z = int(self.angular_zl - self.angular_zr) * 0.5
+        twist.linear.x = int(self.linear_x) * 0.3
+        twist.angular.z = int(self.angular_zl - self.angular_zr) * 0.3
         rate = rospy.Rate(10)
         for i in range(5):
             self.pub.publish(twist)
