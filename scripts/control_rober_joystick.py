@@ -26,7 +26,7 @@ class Contorller:
         twist = Twist()
         twist.linear.x = int(self.linear_x) * 0.3
         twist.angular.z = int(self.angular_zl - self.angular_zr) * 0.3
-        rate = rospy.Rate(10)
+        rate = rospy.Rate(100)
         for i in range(5):
             self.pub.publish(twist)
             rospy.loginfo("linear_x: %f, angular_z: %f", twist.linear.x, twist.angular.z)
