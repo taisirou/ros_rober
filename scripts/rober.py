@@ -60,8 +60,8 @@ class Rober:
         angle = data.angular.z * 100
         rospy.loginfo('set linear.x = {}, angular.z = {}'.format(linear, angle))
  
-        right_speed = linear + angle
-        left_speed = linear - angle
+        right_speed = linear - angle
+        left_speed = linear + angle
         
         # Set vector of both motor 
         self.set_vector(0, right_speed)
