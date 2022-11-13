@@ -136,10 +136,10 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 44.388
+      Distance: 16.3445 
       Focal Point:
-        X: 9.50434
-        Y: -0.685607
+        X: 3.3412 
+        Y: -4.20346
         Z: 0
       Name: Current View
       Near Clip Distance: 0.01
