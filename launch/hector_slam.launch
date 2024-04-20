@@ -13,7 +13,7 @@
   </group>
 
   <include file="$(find my_rober)/launch/mapping_default.launch"/>
-  <include file="$(find hector_geotiff)/launch/geotiff_mapper.launch">
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
     <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
   </include>
 </launch>
