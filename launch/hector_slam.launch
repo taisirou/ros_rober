@@ -2,7 +2,7 @@
   <arg name="enable_display" default="true"/>
 
   <!-- Lidar -->
-  <include file="$(find my_rober)/launch/ydlidar_x2l.launch"/>
+  <include file="$(find my_rober)/launch/X4.launch.launch"/>
 
   <!-- Hector SLAM -->
   <param name="/use_sim_time" value="false"/>
