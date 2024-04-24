@@ -30,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LidarLaserScan
 Visualization Manager:
   Class: ""
   Displays:
@@ -85,7 +85,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: laser_frame
     Frame Rate: 30
   Name: root
   Tools:
