@@ -1,3 +1,6 @@
+KMiura's diaryさんのソースコードをRaspberyPi3B用に修正
+https://supernove.hatenadiary.jp/entry/2022/06/19/103456
+
 # ros_rober
 ROS対応の自作ロボットカー
 
