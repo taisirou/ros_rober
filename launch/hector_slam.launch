@@ -9,7 +9,7 @@
   <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0.0 0.0 0.0 0.0 0.0 0.0 /map /nav 40"/>
   <node pkg="tf" type="static_transform_publisher" name="odom_to_base_link" args="0.0 0.0 0.0 0.0 0.0 0.0 /nav /base_footprint 40"/>
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.2245 0.0 0.2 0.0 0.0 0.0 /base_footprint /base_link 40" />
-
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4" args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser_frame 40" />
   <!-- hector_slam -->
   <include file="$(find hector_slam_launch)/launch/tutorial.launch"/> 
   
