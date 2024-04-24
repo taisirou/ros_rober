@@ -1,5 +1,6 @@
 <launch>
-  <arg name="enable_display" default="true"/>
+  <!-- https://supernove.hatenadiary.jp/entry/2022/06/19/103456-->
+ <!-- <arg name="enable_display" default="true"/>-->
 
   <!-- Lidar -->
   <!--<include file="$(find my_rober)/launch/X4.launch.launch"/> -->
